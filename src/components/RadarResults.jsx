@@ -60,7 +60,7 @@ const RadarResults = forwardRef(function RadarResults({ traits, answers }, ref) 
             tick={(props) => <RadialTick {...props} traits={traits} fontSize={isNarrow ? 7 : 8.5} />}
           />
           <PolarRadiusAxis angle={30} domain={[0, 5]} tickCount={6} />
-          <Radar name="Self-assessment" dataKey="score" stroke="#D9573F" fill="#D9573F" fillOpacity={0.45} />
+          <Radar name="Self-assessment" dataKey="score" stroke="#F14036" fill="#F14036" fillOpacity={0.45} />
         </RadarChart>
       </ResponsiveContainer>
 
