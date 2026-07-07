@@ -1,0 +1,93 @@
+#root {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  font-family: system-ui, sans-serif;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.intake-step label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-weight: 600;
+}
+
+.intake-step input,
+.intake-step select {
+  font-size: 1.1rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-weight: normal;
+}
+
+.definition {
+  color: #555;
+}
+
+.error {
+  color: #c0392b;
+}
+
+button {
+  cursor: pointer;
+}
+
+.progress {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.scale {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.scale-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: 2px solid #5b8def;
+  background: white;
+  color: #333;
+  text-align: left;
+  font-size: 1rem;
+}
+
+.scale-num {
+  flex: 0 0 auto;
+  width: 1.75rem;
+  height: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #5b8def;
+  color: white;
+  font-weight: 600;
+}
+
+.scale-btn.selected {
+  background: #e8f0fe;
+}
+
+.back-btn {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  color: #888;
+  text-decoration: underline;
+}
+
+.results-page {
+  text-align: center;
+}
