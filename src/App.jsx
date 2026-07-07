@@ -48,7 +48,7 @@ function App() {
   async function sendResultsEmail() {
     setSendStatus('sending')
     try {
-      const chartImage = await toPng(chartRef.current)
+      const chartDataUrl = await toPng(chartRef.current)
       const summary = traits.map((t) => `${t.label}: ${answers[t.id]}`).join('\n')
 
       await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
@@ -57,7 +57,7 @@ function App() {
         student_name: student.name,
         program: student.program,
         year: student.year,
-        chart_image: chartImage,
+        chart_attachment: chartDataUrl,
         summary,
       }, EMAILJS_PUBLIC_KEY)
 
@@ -79,29 +79,35 @@ function App() {
   }
 
   if (!student) {
-    return <IntakeStep onSubmit={setStudent} />
+    return (
+      <div className="card">
+        <IntakeStep onSubmit={setStudent} />
+      </div>
+    )
   }
 
   if (!isComplete) {
     const trait = traits[stepIndex]
     return (
-      <TraitStep
-        trait={trait}
-        index={stepIndex}
-        total={traits.length}
-        value={answers[trait.id]}
-        onAnswer={handleAnswer}
-        onBack={handleBack}
-      />
+      <div className="card">
+        <TraitStep
+          trait={trait}
+          index={stepIndex}
+          total={traits.length}
+          value={answers[trait.id]}
+          onAnswer={handleAnswer}
+          onBack={handleBack}
+        />
+      </div>
     )
   }
 
   return (
-    <div className="results-page">
+    <div className="card card-wide results-page">
       <RadarResults ref={chartRef} traits={traits} answers={answers} />
-      {sendStatus === 'sending' && <p>Sending your results to {student.email}...</p>}
-      {sendStatus === 'sent' && <p>Results sent to {student.email}.</p>}
-      {sendStatus === 'error' && <p className="error">Couldn't send the email automatically. Please contact your teacher.</p>}
+      {sendStatus === 'sending' && <p className="status">Sending your results to {student.email}...</p>}
+      {sendStatus === 'sent' && <p className="status">Results sent to {student.email}.</p>}
+      {sendStatus === 'error' && <p className="error status">Couldn't send the email automatically. Please contact your teacher.</p>}
     </div>
   )
 }
