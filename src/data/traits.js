@@ -1,10 +1,10 @@
 // Inner Development Goals (IDG) framework: 5 dimensions of 5 traits each.
 export const DIMENSIONS = [
-  { name: 'Being', subtitle: 'Relationship to Self', color: '#C9A876' },
-  { name: 'Thinking', subtitle: 'Cognitive Skills', color: '#E28FA8' },
-  { name: 'Relating', subtitle: 'Caring for Others and the World', color: '#D9573F' },
-  { name: 'Collaborating', subtitle: 'Social Skills', color: '#EF7F2E' },
-  { name: 'Acting', subtitle: 'Enabling Change', color: '#5B1F2E' },
+  { name: 'Being', subtitle: 'Relationship to Self', color: '#DBB787' },
+  { name: 'Thinking', subtitle: 'Cognitive Skills', color: '#F37EA1' },
+  { name: 'Relating', subtitle: 'Caring for Others and the World', color: '#F14036' },
+  { name: 'Collaborating', subtitle: 'Social Skills', color: '#FF7400' },
+  { name: 'Acting', subtitle: 'Enabling Change', color: '#6E1030' },
 ]
 
 export const traits = [
