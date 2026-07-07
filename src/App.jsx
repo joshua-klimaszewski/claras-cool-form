@@ -8,15 +8,35 @@ import TraitStep from './components/TraitStep'
 import RadarResults from './components/RadarResults'
 import './App.css'
 
+const STORAGE_KEY = 'claras-cool-form-progress'
+
+function loadProgress() {
+  try {
+    const raw = sessionStorage.getItem(STORAGE_KEY)
+    return raw ? JSON.parse(raw) : null
+  } catch {
+    return null
+  }
+}
+
 function App() {
-  const [student, setStudent] = useState(null)
-  const [stepIndex, setStepIndex] = useState(0)
-  const [answers, setAnswers] = useState({})
+  const saved = loadProgress()
+  const [student, setStudent] = useState(saved?.student ?? null)
+  const [stepIndex, setStepIndex] = useState(saved?.stepIndex ?? 0)
+  const [answers, setAnswers] = useState(saved?.answers ?? {})
   const [sendStatus, setSendStatus] = useState('idle') // idle | sending | sent | error
   const chartRef = useRef(null)
   const hasSent = useRef(false)
 
   const isComplete = student && stepIndex >= traits.length
+
+  useEffect(() => {
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ student, stepIndex, answers }))
+  }, [student, stepIndex, answers])
+
+  useEffect(() => {
+    if (isComplete) sessionStorage.removeItem(STORAGE_KEY)
+  }, [isComplete])
 
   useEffect(() => {
     if (!isComplete || hasSent.current) return
