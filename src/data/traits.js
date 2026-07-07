@@ -1,3 +1,12 @@
+// Inner Development Goals (IDG) framework: 5 dimensions of 5 traits each.
+export const DIMENSIONS = [
+  { name: 'Being', subtitle: 'Relationship to Self', color: '#C9A876' },
+  { name: 'Thinking', subtitle: 'Cognitive Skills', color: '#E28FA8' },
+  { name: 'Relating', subtitle: 'Caring for Others and the World', color: '#D9573F' },
+  { name: 'Collaborating', subtitle: 'Social Skills', color: '#EF7F2E' },
+  { name: 'Acting', subtitle: 'Enabling Change', color: '#5B1F2E' },
+]
+
 export const traits = [
   ['Inner Compass', 'A deeply felt commitment to live and act in accordance with values and purposes that serve the good of the whole.'],
   ['Integrity and Authenticity', 'A sincere commitment to honesty and firmly grounded values, expressed and embodied in action.'],
@@ -24,7 +33,12 @@ export const traits = [
   ['Conscious Use of Resources', 'Acting with awareness of the planet’s limited natural resources, prioritizing conservation, regeneration, and frugality to avoid harmful consumption.'],
   ['Proactivity', 'Practicing future-oriented, accountable stewardship in the face of urgent challenges, grounded in solidarity and care for human dignity and the living Earth.'],
   ['Resilience', 'Navigating adversity with agility, staying engaged, and persevering even when progress is slow or uncertain.'],
-].map(([label, definition], i) => ({ id: `trait-${i + 1}`, label, definition }))
+].map(([label, definition], i) => ({
+  id: `trait-${i + 1}`,
+  label,
+  definition,
+  dimension: DIMENSIONS[Math.floor(i / 5)],
+}))
 
 export const RATING_SCALE = [
   { value: 1, label: 'I don’t know how to do this' },
