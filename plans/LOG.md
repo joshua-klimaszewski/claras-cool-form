@@ -20,18 +20,26 @@
   only the trait name (definitions are not shown there per requirement).
 - `npm run build` passes.
 
-### Open questions
-- EmailJS account credentials (service ID, template ID, public key) — user
-  needs to create these and fill into `src/emailConfig.js` or `.env`.
-- Admin/designated recipient email address — placeholder used for now,
-  needs the real address.
-- Email template design (should it embed the chart as an image attachment,
-  inline image, or just a data summary?) — needs an actual EmailJS template
-  built in their dashboard using the variables sent from `App.jsx`
-  (`to_email`, `admin_email`, `student_name`, `program`, `year`,
-  `chart_image`, `summary`).
+- Set up EmailJS end to end: initial Gmail service OAuth connection had
+  insufficient scopes (`412 Gmail_API: Request had insufficient
+  authentication scopes`), causing sends to fail even with correct
+  credentials. Reauthorizing the Gmail connection in the EmailJS dashboard
+  fixed it and issued a new service ID (`service_t3lrr3i`, replacing the
+  original `service_rh9ih0d`). Verified with a real send via a raw fetch to
+  the EmailJS REST API (200 OK), then confirmed via the actual app flow that
+  the email arrives with the template content and chart. `src/emailConfig.js`
+  now has real values: service ID, template ID (`template_dapkjjh`), public
+  key, and admin email (`cgama@umich.edu`).
+- Repo required `main` created (repo was empty; `feat/mvp-wizard` accidentally
+  became the default branch on first push) — created an orphan `main`, set it
+  as default, rebased `feat/mvp-wizard` onto it, opened PR #1.
+- Added sessionStorage persistence for wizard progress so a mid-wizard reload
+  (e.g. a browser extension reconnecting to the tab) doesn't wipe answers
+  back to the intake screen — this is what caused an early "looped back to
+  self-assessment" report during testing.
 
 ### Next steps
-- Fill in real EmailJS credentials and admin email in `src/emailConfig.js`.
-- Build the EmailJS template to match the variables the app sends.
-- Set up GitHub Actions (ci.yml, deploy.yml) and push initial commit.
+- Enable GitHub Pages in repo Settings (Source: GitHub Actions) once PR #1
+  merges to main.
+- Consider whether the EmailJS template needs refinement (chart image size
+  vs. template limits) now that a real send has been confirmed working.
